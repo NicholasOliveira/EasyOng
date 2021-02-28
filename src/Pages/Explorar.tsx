@@ -8,21 +8,26 @@ import {
 } from 'react-native';
 import { Layout, TopNavigation, Button, Text } from '@ui-kitten/components';
 
-export const HomeScreen = ({ navigation }:any) => {
+import SearchBar from '../components/SearchBar';
+
+export const ExplorarScreen = ({ navigation }:any) => {
   const navigateDetails = () => {
     navigation.navigate('Details');
   };
   return (<>
   <StatusBar barStyle="dark-content" />
   <SafeAreaView>
-  <TopNavigation title='EasyOng' alignment='center'/>
+  <TopNavigation title='Explorar' alignment='center'/>
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
       style={styles.scrollView}>
         <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+
+<SearchBar />
+
           <Button onPress={navigateDetails}>OPEN DETAILS</Button>
             <View style={styles.sectionContainer}>
-              <Text category='h1'>HOME PAGE</Text>
+              <Text category='h1'>Explorar</Text>
               <Text style={styles.sectionDescription}>
                 Edit <Text style={styles.highlight}>App.tsx</Text> to change this
                 screen and then come back to see your edits.
