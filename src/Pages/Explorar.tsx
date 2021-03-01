@@ -6,7 +6,7 @@ import {
   View,
   StatusBar,
 } from 'react-native';
-import { Layout, TopNavigation, Button, Text } from '@ui-kitten/components';
+import { Layout, TopNavigation, Button, Text, Divider } from '@ui-kitten/components';
 
 import SearchBar from '../components/SearchBar';
 
@@ -16,32 +16,25 @@ export const ExplorarScreen = ({ navigation }:any) => {
   };
   return (<>
   <StatusBar barStyle="dark-content" />
-  <SafeAreaView>
-  <TopNavigation title='Explorar' alignment='center'/>
-    <ScrollView
-      contentInsetAdjustmentBehavior="automatic"
+   <SafeAreaView style={{ flex: 1 }}>
+   <TopNavigation title='Explorar' alignment='center'/>
+      <Divider/>
+      <Layout style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ScrollView 
       style={styles.scrollView}>
-        <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-
-<SearchBar />
-
-          <Button onPress={navigateDetails}>OPEN DETAILS</Button>
-            <View style={styles.sectionContainer}>
-              <Text category='h1'>Explorar</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-       </Layout>
-    </ScrollView>
-  </SafeAreaView>
+      <SearchBar />
+      <Button onPress={navigateDetails}>OPEN DETAILS</Button>
+      </ScrollView>
+      </Layout>
+    </SafeAreaView>
 </>);
 };
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: '#ffffff',
+    width: '100%',
+    padding: 10,
+    backgroundColor: 'transparent',
   },
   engine: {
     position: 'absolute',
