@@ -1,11 +1,5 @@
-import React, {Children} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-  View,
-} from 'react-native';
+import React from 'react';
+import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {
   Layout,
   TopNavigation,
@@ -13,7 +7,6 @@ import {
   Icon,
   List,
   Text,
-  useTheme,
 } from '@ui-kitten/components';
 import {
   Container,
@@ -24,13 +17,15 @@ import {
   OngCardItem,
   CardItem,
   ListCardItem,
+  ItemTitle,
+  ItemDescription,
 } from './styles';
 import SearchBar from '../../components/SearchBar';
+import {Ongs} from '../../../ongs';
+
 export const ExplorarScreen = ({navigation}: any) => {
-  const theme = useTheme();
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const navigateDetails = () => {
-    navigation.navigate('Details');
+  const navigateDetails = (id: number) => {
+    navigation.navigate('Details', {itemId: id});
   };
   const FilterIcon = (props: any) => (
     <Icon fill="#ffffff" name="options-2" {...props} />
@@ -40,41 +35,16 @@ export const ExplorarScreen = ({navigation}: any) => {
     <Icon fill="#ffffff" name="chevron-down" {...props} />
   );
 
-  const Ongs = [
-    {
-      title: 'Chest1',
-      duration: 55,
-      level: 'Easy',
-      image: '',
-    },
-    {
-      title: 'Chest2',
-      duration: 55,
-      level: 'Easy',
-      image: '',
-    },
-    {
-      title: 'Chest3',
-      duration: 55,
-      level: 'Easy',
-      image: '',
-    },
-    {
-      title: 'Chest4',
-      duration: 55,
-      level: 'Easy',
-      image: '',
-    },
-  ];
+  const renderHorizontalOngItem = (info: any) => (
+    <OngCardItem onPress={() => navigateDetails(info.item.id)}>
+      <ItemTitle>{info.item.title}</ItemTitle>
+      <ItemDescription>{info.item.descriptionShort}</ItemDescription>
+    </OngCardItem>
+  );
 
   const displayOngs = Ongs.filter((Ong) => Ong.level === 'Easy');
   return (
     <>
-      <StatusBar
-        animated={true}
-        backgroundColor={theme['color-basic-800']}
-        barStyle="dark-content"
-      />
       <SafeAreaView style={styles.safeArea}>
         <TopNavigation
           alignment="center"
@@ -113,12 +83,14 @@ export const ExplorarScreen = ({navigation}: any) => {
                 <TextView>Veja mais</TextView>
               </ViewFlex>
               <ListCardItem>
-                <CardItem />
-                <CardItem />
-                <CardItem />
-                <CardItem />
-                <CardItem />
-                <CardItem />
+                {Ongs.map((Ong) => (
+                  <CardItem
+                    onPress={() => navigateDetails(Ong.id)}
+                    key={Ong.id}>
+                    <ItemTitle>{Ong.title}</ItemTitle>
+                    <ItemDescription>{Ong.descriptionShort}</ItemDescription>
+                  </CardItem>
+                ))}
               </ListCardItem>
             </Container>
           </ScrollView>
@@ -127,10 +99,6 @@ export const ExplorarScreen = ({navigation}: any) => {
     </>
   );
 };
-
-const renderHorizontalOngItem = (info: any) => (
-  <OngCardItem>{info.item.title}</OngCardItem>
-);
 
 const styles = StyleSheet.create({
   listBox: {

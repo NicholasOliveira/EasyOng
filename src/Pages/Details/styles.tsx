@@ -1,9 +1,22 @@
 import styled from 'styled-components/native';
-import {Button, Input, Text, Card} from '@ui-kitten/components';
+import {Button, Input, Text, Card, ListItem} from '@ui-kitten/components';
 import {View} from 'react-native';
 
 export const Container = styled.View`
   padding: 15px;
+`;
+
+export const ImgView = styled.View`
+  width: 100%;
+  height: 250px;
+  background-color: #c4c4c4;
+`;
+
+export const ListItemBox = styled(ListItem)`
+  height: 46px;
+  border-radius: 6px;
+  margin: 15px 0px;
+  padding: 0px 12px;
 `;
 
 export const InputField = styled(Input)`
@@ -54,36 +67,39 @@ export const TextView = styled(Text)`
   font-size: 23px;
   font-weight: 200;
   font-family: sans-serif;
-  margin-top: 15px;
+  margin-top: -90px;
   text-align: left;
 `;
 
-export const OngCardItem = styled.TouchableOpacity`
-  width: 256px;
-  margin: 16px 16px;
-  margin-left: 0px;
-  height: 160px;
+export const OngCard = styled(View)`
+  width: 100%;
+  height: 100%;
   display: flex;
+  margin-top: -50px;
   align-items: flex-start;
-  justify-content: flex-end;
-  background-color: #c4c4c4;
-  border-radius: 8px;
-  color: #ffffff;
-  padding: 24px 12px;
+  justify-content: flex-start;
+  background-color: #ffffff;
+  border-radius: 20px;
+  color: #000000;
+  padding: 24px;
   font-size: 13px;
   font-weight: 700;
 `;
 
 export const ItemTitle = styled(Text)`
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 20px;
+  line-height: 23px;
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+  color: #000000;
+  margin-top: 10px;
 `;
 export const ItemDescription = styled(Text)`
-  font-size: 14px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 18px;
   font-weight: 400;
+  color: #000000;
+  margin-bottom: 20px;
 `;
 
 export const ListCardItem = styled(View)`
@@ -94,14 +110,13 @@ export const ListCardItem = styled(View)`
   flex-wrap: wrap;
 `;
 
-export const CardItem = styled.TouchableOpacity`
+export const CardItem = styled(Card)`
   width: 163px;
   height: 168px;
   background: #c4c4c4;
   border-radius: 9px;
   margin: 8px 0px;
   display: flex;
-  padding: 24px 12px;
   align-items: flex-start;
   justify-content: flex-end;
 `;
