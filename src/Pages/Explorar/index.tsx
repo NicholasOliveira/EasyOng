@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Children} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,10 +13,21 @@ import {
   Icon,
   List,
   Text,
+  useTheme,
 } from '@ui-kitten/components';
-import {Container, Box, BoxButton, TextView, ViewFlex} from './styles';
+import {
+  Container,
+  Box,
+  BoxButton,
+  TextView,
+  ViewFlex,
+  OngCardItem,
+  CardItem,
+  ListCardItem,
+} from './styles';
 import SearchBar from '../../components/SearchBar';
 export const ExplorarScreen = ({navigation}: any) => {
+  const theme = useTheme();
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const navigateDetails = () => {
     navigation.navigate('Details');
@@ -31,25 +42,25 @@ export const ExplorarScreen = ({navigation}: any) => {
 
   const Ongs = [
     {
-      title: 'Chest',
+      title: 'Chest1',
       duration: 55,
       level: 'Easy',
       image: '',
     },
     {
-      title: 'Chest',
+      title: 'Chest2',
       duration: 55,
       level: 'Easy',
       image: '',
     },
     {
-      title: 'Chest',
+      title: 'Chest3',
       duration: 55,
       level: 'Easy',
       image: '',
     },
     {
-      title: 'Chest',
+      title: 'Chest4',
       duration: 55,
       level: 'Easy',
       image: '',
@@ -59,9 +70,16 @@ export const ExplorarScreen = ({navigation}: any) => {
   const displayOngs = Ongs.filter((Ong) => Ong.level === 'Easy');
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar
+        animated={true}
+        backgroundColor={theme['color-basic-800']}
+        barStyle="dark-content"
+      />
       <SafeAreaView style={styles.safeArea}>
-        <TopNavigation title="Explorar" alignment="center" />
+        <TopNavigation
+          alignment="center"
+          title={() => <Text style={styles.titleTopNavigation}>Explorar</Text>}
+        />
         <Divider />
         <Layout style={styles.layoutGlobal}>
           <ScrollView style={styles.scrollView}>
@@ -82,45 +100,50 @@ export const ExplorarScreen = ({navigation}: any) => {
               <ViewFlex>
                 <TextView>Sugestões para você</TextView>
               </ViewFlex>
+
+              <List
+                style={styles.listBox}
+                contentContainerStyle={styles.ongList}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+                data={displayOngs}
+                renderItem={renderHorizontalOngItem}
+              />
+              <ViewFlex>
+                <TextView>Veja mais</TextView>
+              </ViewFlex>
+              <ListCardItem>
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+                <CardItem />
+              </ListCardItem>
             </Container>
-            <List
-              style={styles.listBox}
-              contentContainerStyle={styles.ongList}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              data={displayOngs.reverse()}
-              renderItem={renderHorizontalOngItem}
-            />
           </ScrollView>
         </Layout>
       </SafeAreaView>
     </>
   );
 };
-const OngCard = (props: any) => <Text {...props}>Olá</Text>;
+
 const renderHorizontalOngItem = (info: any) => (
-  <OngCard style={styles.OngCard} Ong={info.item} />
+  <OngCardItem>{info.item.title}</OngCardItem>
 );
 
 const styles = StyleSheet.create({
   listBox: {
     backgroundColor: 'transparent',
   },
-  ongList: {
-    marginVertical: 16,
-    paddingHorizontal: 8,
-    backgroundColor: 'transparent',
+  titleTopNavigation: {
+    fontSize: 18,
+    fontWeight: '700',
   },
-  OngCard: {
-    width: 256,
-    margin: 15,
-    height: 160,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#C4C4C4',
-    borderRadius: 8,
-    color: '#ffffff',
-    padding: 24,
+  ongList: {
+    marginVertical: 8,
+    paddingHorizontal: 0,
+    backgroundColor: 'transparent',
   },
   safeArea: {
     flex: 1,

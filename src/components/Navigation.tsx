@@ -8,11 +8,13 @@ import {ExplorarScreen} from '../Pages/Explorar';
 const {Navigator, Screen} = createStackNavigator();
 
 const HomeNavigator = () => (
-  <Navigator headerMode="none">
-    <Screen name="Explorar" component={ExplorarScreen} />
-    <Screen name="Home" component={HomeScreen} />
-    <Screen name="Details" component={DetailsScreen} />
-  </Navigator>
+  <>
+    <Navigator headerMode="none">
+      <Screen name="Explorar" component={ExplorarScreen} />
+      <Screen name="Home" component={HomeScreen} />
+      <Screen name="Details" component={DetailsScreen} />
+    </Navigator>
+  </>
 );
 
 export const AppNavigator = () => (
