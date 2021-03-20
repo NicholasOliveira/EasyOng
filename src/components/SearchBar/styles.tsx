@@ -19,6 +19,8 @@ export const BoxInput = styled.View`
 
 export const InputField = styled(Input)`
   width: auto;
+  color: #000000;
+  font-size: 16px;
   margin: 0;
   width: 85%;
   background-color: transparent;

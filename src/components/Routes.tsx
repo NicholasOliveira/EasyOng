@@ -13,7 +13,7 @@ export const NavigatorHandle = () => {
   return (
     <>
       <Navigator tabBar={(props) => <BottomNavigationTabs {...props} />}>
-        <Screen name="Home" component={FavoriteScreen} />
+        <Screen name="Home" component={ExplorarScreen} />
         <Screen name="Explorar" component={ExplorarScreen} />
         <Screen name="Favorite" component={FavoriteScreen} />
         <Screen name="Notification" component={NotificationScreen} />

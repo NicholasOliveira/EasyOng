@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet} from 'react-native';
 
 import {Icon} from '@ui-kitten/components';
 import {Container, BoxInput, BoxButton, InputField} from './styles';
 
 const SearchBar: React.FC = () => {
+  const [value, setValue] = useState();
+
+  const handleValue = (e: any) => {
+    setValue(e.target.value);
+  };
   const HomeIcon = (props: any) => (
     <Icon fill="#979797" name="search" {...props} />
   );
@@ -18,7 +23,8 @@ const SearchBar: React.FC = () => {
           <BoxButton accessoryLeft={HomeIcon} />
           <InputField
             style={styles.inputStyle}
-            value={''}
+            value={value}
+            onChange={(e) => handleValue(e)}
             placeholder="Pesquisar"
             accessoryRight={VoiceIcon}
           />
@@ -31,6 +37,7 @@ const SearchBar: React.FC = () => {
 const styles = StyleSheet.create({
   inputStyle: {
     borderColor: '#ffffff',
+    color: '#000000',
   },
 });
 
