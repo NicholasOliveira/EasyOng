@@ -1,63 +1,111 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import React, {useContext, useEffect} from 'react';
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {
   Icon,
   Layout,
   TopNavigation,
   TopNavigationAction,
-  Text,
 } from '@ui-kitten/components';
+import {useTheme} from '@ui-kitten/components';
 import {
-  ImgView,
-  TextView,
-  Container,
-  OngCard,
+  FavoriteItem,
   ItemTitle,
   ItemDescription,
-  ListItemBox,
+  FavoriteButton,
+  Container,
 } from './styles';
-import {Ongs} from '../../../ongs';
-const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
+import {OngsContext, FavoritesContext, UsersContext} from '../../Contexts';
 
-export const FavoriteScreen = ({route, navigation}: any) => {
-  const {itemId} = route.params;
+export const FavoriteScreen = ({navigation}: any) => {
+  const theme = useTheme();
+  const {Ongs}: any = useContext(OngsContext);
+
+  const {Favorites, setFavorites}: any = useContext(FavoritesContext);
+
+  const {User}: any = useContext(UsersContext);
+
+  /*   useEffect(() => {
+    setFavorites({});
+  }, [setFavorites]); */
+
+  const navigateDetails = (id: number) => {
+    navigation.navigate('Details', {itemId: id});
+  };
+
   const navigateBack = () => {
     navigation.goBack();
   };
 
-  const ArrowIcon = (props: any) => (
-    <Icon fill="#ffffff" name="chevron-right" {...props} />
+  const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
+
+  const RemoveIcon = (props: any) => (
+    <Icon {...props} name="trash" fill={'#202020'} />
   );
+
+  const handleRemoveFavorite = (idOng: any) => {
+    const fav = Favorites['u' + User.id].filter(
+      (favorite: any) => favorite !== idOng,
+    );
+    setFavorites({
+      ['u' + User.id]: [...fav],
+    });
+  };
 
   const BackAction = () => (
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
+  const styles = StyleSheet.create({
+    scrollView: {
+      width: '100%',
+      height: '100%',
+      backgroundColor: theme['color-basic-800'],
+    },
+    Layout: {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      flexDirection: 'column',
+      height: '100%',
+      backgroundColor: theme['color-basic-800'],
+    },
+  });
+
   return (
-    <SafeAreaView>
-      <TopNavigation
-        title="Favoritos"
-        alignment="center"
-        accessoryLeft={BackAction}
-      />
+    <ScrollView style={styles.scrollView}>
+      <SafeAreaView>
+        <TopNavigation
+          title="Favoritos"
+          alignment="center"
+          accessoryLeft={BackAction}
+        />
+      </SafeAreaView>
       <Layout style={styles.Layout}>
-        <ImgView />
         <Container>
-          <TextView>{Ongs[itemId].title}</TextView>
+          {Favorites['u' + User.id] &&
+            Favorites['u' + User.id]?.map((favorite: any, index: any) => (
+              <TouchableOpacity
+                onPress={() => navigateDetails(favorite)}
+                key={index}>
+                <FavoriteItem>
+                  <FavoriteButton
+                    onPress={() => handleRemoveFavorite(favorite)}
+                    accessoryLeft={(props) => RemoveIcon({...props})}
+                  />
+                </FavoriteItem>
+                <ItemTitle>{Ongs[favorite].title}</ItemTitle>
+                <ItemDescription>
+                  {Ongs[favorite].descriptionShort}
+                </ItemDescription>
+              </TouchableOpacity>
+            ))}
         </Container>
       </Layout>
-    </SafeAreaView>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    width: '100%',
-    backgroundColor: 'transparent',
-  },
-  Layout: {
-    marginBottom: 100,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});

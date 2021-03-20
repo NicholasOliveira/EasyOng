@@ -16,7 +16,7 @@ import {
   ItemDescription,
   ListItemBox,
 } from './styles';
-import {Ongs} from '../../../ongs';
+import {Ongs} from '../../data/ongs';
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
 export const ProfileScreen = ({route, navigation}: any) => {

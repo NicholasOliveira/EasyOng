@@ -6,6 +6,45 @@ export const Container = styled.View`
   padding: 15px;
 `;
 
+export const FavoriteItem = styled.View`
+  width: 100%;
+  height: 145px;
+  background-color: transparent;
+  position: relative;
+`;
+
+export const FavoriteButton = styled(Button)`
+  background: #ffffff;
+  display: flex;
+  border: 0;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  color: #f04;
+  border-radius: 45px;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+`;
+
+export const ShareButton = styled(Button)`
+  background: #ffffff;
+  display: flex;
+  border: 0;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  color: #f04;
+  border-radius: 45px;
+  text-align: center;
+  position: absolute;
+  top: 16px;
+  right: 48px;
+`;
+
 export const ImgView = styled.View`
   width: 100%;
   height: 250px;

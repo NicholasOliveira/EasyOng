@@ -60,3 +60,7 @@ export const Ongs = [
     image: '',
   },
 ];
+
+export const Favorites = {};
+
+export const Users = {id: 1, name: 'Nicholas Oliveira'};

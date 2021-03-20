@@ -20,8 +20,7 @@ export const HomeScreen = ({navigation}: any) => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Layout
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Layout style={styles.layoutItem}>
             <Button onPress={navigateDetails}>OPEN DETAILS</Button>
             <View style={styles.sectionContainer}>
               <Text category="h1">HOME PAGE</Text>
@@ -40,6 +39,11 @@ export const HomeScreen = ({navigation}: any) => {
 const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#ffffff',
+  },
+  layoutItem: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   engine: {
     position: 'absolute',

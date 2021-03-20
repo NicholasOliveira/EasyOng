@@ -21,7 +21,7 @@ import {
   ItemDescription,
 } from './styles';
 import SearchBar from '../../components/SearchBar';
-import {Ongs} from '../../../ongs';
+import {Ongs} from '../../data/ongs';
 
 export const ExplorarScreen = ({navigation}: any) => {
   const navigateDetails = (id: number) => {

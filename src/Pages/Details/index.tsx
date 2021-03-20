@@ -1,5 +1,5 @@
-import React from 'react';
-import {Alert, SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
 import {
   Icon,
   Layout,
@@ -15,14 +15,31 @@ import {
   ItemTitle,
   ItemDescription,
   ListItemBox,
+  FavoriteButton,
+  ShareButton,
 } from './styles';
-import {Ongs} from '../../../ongs';
+import {OngsContext, FavoritesContext, UsersContext} from '../../Contexts';
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
 export const DetailsScreen = ({route, navigation}: any) => {
   const {itemId} = route.params;
   const navigateBack = () => {
     navigation.goBack();
+  };
+
+  const {Ongs}: any = useContext(OngsContext);
+
+  const {Favorites, setFavorites}: any = useContext(FavoritesContext);
+  const {User}: any = useContext(UsersContext);
+
+  const active = Favorites['u' + User.id]?.includes(itemId);
+
+  const handleFavorite = (idOng: any) => {
+    setFavorites({
+      ['u' + User.id]: Favorites['u' + User.id]
+        ? [...Favorites['u' + User.id], idOng]
+        : [idOng],
+    });
   };
 
   const ArrowIcon = (props: any) => (
@@ -33,6 +50,18 @@ export const DetailsScreen = ({route, navigation}: any) => {
     <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
   );
 
+  const FavoriteIcon = (props: any) => (
+    <Icon
+      {...props}
+      size="30"
+      name="heart"
+      fill={props.active ? '#f00946' : 'rgba(0, 0, 0, 0.54)'}
+    />
+  );
+
+  const ShareIcon = (props: any) => (
+    <Icon {...props} size="30" name="share" fill={'rgba(0, 0, 0, 0.54)'} />
+  );
   return (
     <SafeAreaView>
       <TopNavigation
@@ -47,6 +76,13 @@ export const DetailsScreen = ({route, navigation}: any) => {
             <TextView>{Ongs[itemId].title}</TextView>
           </Container>
           <OngCard>
+            <FavoriteButton
+              onPress={() => !active && handleFavorite(itemId)}
+              accessoryLeft={(props) => FavoriteIcon({...props, active})}
+            />
+            <ShareButton
+              accessoryLeft={(props) => ShareIcon({...props, active: true})}
+            />
             <ItemTitle>Descrição</ItemTitle>
             <ItemDescription>{Ongs[itemId].descriptionLong}</ItemDescription>
             <ListItemBox

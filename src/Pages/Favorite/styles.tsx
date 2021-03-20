@@ -1,58 +1,34 @@
 import styled from 'styled-components/native';
-import {Button, Input, Text, Card, ListItem} from '@ui-kitten/components';
+import {Button, Text, Card} from '@ui-kitten/components';
 import {View} from 'react-native';
 
 export const Container = styled.View`
   padding: 15px;
+  width: 100%;
 `;
 
-export const ImgView = styled.View`
+export const FavoriteItem = styled.View`
   width: 100%;
-  height: 250px;
+  height: 200px;
   background-color: #c4c4c4;
+  border-radius: 8px;
+  position: relative;
 `;
 
-export const ListItemBox = styled(ListItem)`
-  height: 46px;
-  border-radius: 6px;
-  margin: 15px 0px;
-  padding: 0px 12px;
-`;
-
-export const InputField = styled(Input)`
-  width: auto;
-  margin: 0;
-  width: 85%;
-  background-color: transparent;
-  margin-top: 3px;
-  border: none;
-`;
-
-export const Box = styled.View`
-  background-color: transparent;
-  height: 42px;
+export const FavoriteButton = styled(Button)`
+  background: #ffffff;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-`;
-
-export const BoxButton = styled(Button)`
-  background: transparent;
   border: 0;
-  padding: 0px;
-  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-  width: 120px;
+  width: 45px;
+  height: 45px;
   color: #f04;
-  margin: 0;
-  border: 1px solid #bababa;
-  border-radius: 8px;
+  border-radius: 45px;
   text-align: center;
-  margin-left: 15px;
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `;
 
 export const ViewFlex = styled(View)`
@@ -71,34 +47,19 @@ export const TextView = styled(Text)`
   text-align: left;
 `;
 
-export const OngCard = styled(View)`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  margin-top: -50px;
-  align-items: flex-start;
-  justify-content: flex-start;
-  background-color: #ffffff;
-  border-radius: 20px;
-  color: #000000;
-  padding: 24px;
-  font-size: 13px;
-  font-weight: 700;
-`;
-
 export const ItemTitle = styled(Text)`
-  font-size: 20px;
-  line-height: 23px;
+  font-size: 13px;
+  line-height: 18px;
   font-weight: 700;
-  margin-bottom: 15px;
-  color: #000000;
+  margin-bottom: 10px;
+  color: #ffffff;
   margin-top: 10px;
 `;
 export const ItemDescription = styled(Text)`
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 16px;
   font-weight: 400;
-  color: #000000;
+  color: #ffffff;
   margin-bottom: 20px;
 `;
 
