@@ -10,7 +10,7 @@ on:
       - develop
 jobs:
   build:
-    name: Test
+    name: Build and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
