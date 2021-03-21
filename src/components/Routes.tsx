@@ -1,7 +1,6 @@
 import React from 'react';
-import {HomeScreen} from '../Pages/Home';
 import {DetailsScreen} from '../Pages/Details';
-import {ExplorarScreen} from '../Pages/Explorar';
+import {ExploreScreen} from '../Pages/Explore';
 import {FavoriteScreen} from '../Pages/Favorite';
 import {NotificationScreen} from '../Pages/Notification';
 import {ProfileScreen} from '../Pages/Profile';
@@ -13,8 +12,8 @@ export const NavigatorHandle = () => {
   return (
     <>
       <Navigator tabBar={(props) => <BottomNavigationTabs {...props} />}>
-        <Screen name="Home" component={ExplorarScreen} />
-        <Screen name="Explorar" component={ExplorarScreen} />
+        <Screen name="Home" component={ExploreScreen} />
+        <Screen name="Explore" component={ExploreScreen} />
         <Screen name="Favorite" component={FavoriteScreen} />
         <Screen name="Notification" component={NotificationScreen} />
         <Screen name="Profile" component={ProfileScreen} />

@@ -23,7 +23,7 @@ import {
 import SearchBar from '../../components/SearchBar';
 import {Ongs} from '../../data/ongs';
 
-export const ExplorarScreen = ({navigation}: any) => {
+export const ExploreScreen = ({navigation}: any) => {
   const navigateDetails = (id: number) => {
     navigation.navigate('Details', {itemId: id});
   };
@@ -48,7 +48,7 @@ export const ExplorarScreen = ({navigation}: any) => {
       <SafeAreaView style={styles.safeArea}>
         <TopNavigation
           alignment="center"
-          title={() => <Text style={styles.titleTopNavigation}>Explorar</Text>}
+          title={() => <Text style={styles.titleTopNavigation}>Explore</Text>}
         />
         <Divider />
         <Layout style={styles.layoutGlobal}>

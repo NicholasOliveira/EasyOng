@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --fix --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier-eslint --eslint-config-path ./.eslintrc.js --write '**/*.js'"
   },
   "dependencies": {
     "@eva-design/eva": "^2.0.0",
@@ -40,10 +41,14 @@
     "@types/react-native": "^0.63.2",
     "@types/react-test-renderer": "^16.9.2",
     "@types/styled-components-react-native": "^5.1.1",
+    "babel-eslint": "^10.1.0",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
+    "prettier": "^2.2.1",
+    "prettier-eslint": "^12.0.0",
+    "prettier-eslint-cli": "^5.0.1",
     "react-test-renderer": "16.13.1",
     "typescript": "^3.8.3"
   },

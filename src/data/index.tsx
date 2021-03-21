@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {Ongs as OngsData, Favorites as FavoritesData} from './ongs';
 
 const DataOngs = () => {

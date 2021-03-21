@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {Button, Input, Text, Card} from '@ui-kitten/components';
+import {Button, Input, Text} from '@ui-kitten/components';
 import {View} from 'react-native';
 
 export const Container = styled.View`
