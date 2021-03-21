@@ -4,22 +4,33 @@ on:
     branches: 
       - master
       - develop
+      
   pull_request:
     branches:
       - master
       - develop
 jobs:
   build:
-    name: Build and Test
+    name: Build and Test Android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v1
         with:
-          cmd: install
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: test
+          node-version: '12.x'
+          
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+        
+      - name: Run Lint
+        run: yarn run lint
+        
+      - name: Run Build
+        run: yarn run android
+        
+      - name: Run Test
+        run: yarn run test
+      
+  
