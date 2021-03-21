@@ -1,0 +1,50 @@
+name: CI
+on:
+  push:
+    branches: 
+      - master
+      - develop
+      
+  pull_request:
+    branches:
+      - master
+      - develop
+jobs:
+  build:
+    name: Build and Test Android
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+          
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache
+        uses: actions/cache@v2.1.4
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+          
+      - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
+        run: yarn --frozen-lockfile
+        
+      - name: Run Lint
+        run: yarn run lint
+        
+      - name: Run Build
+        run: yarn run android
+        
+      - name: Run Test
+        run: yarn run test
+      
+  
