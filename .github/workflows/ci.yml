@@ -1,14 +1,23 @@
 name: CI
+name: CI
 on:
   push:
     branches: 
       - master
       - develop
-      
+      - feature/*
+      - improvement/*
+      - fix/*
+      - hotfix/*
+
   pull_request:
     branches:
       - master
       - develop
+      - feature/*
+      - improvement/*
+      - fix/*
+      - hotfix/*
 jobs:
   build:
     name: Build and Test
