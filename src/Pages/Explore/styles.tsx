@@ -3,7 +3,7 @@ import {Button, Input, Text} from '@ui-kitten/components';
 import {View} from 'react-native';
 
 export const Container = styled.View`
-  padding: 15px;
+  padding: 16px;
 `;
 
 export const InputField = styled(Input)`
@@ -95,13 +95,13 @@ export const ListCardItem = styled(View)`
 `;
 
 export const CardItem = styled.TouchableOpacity`
-  width: 163px;
+  width: 48%;
   height: 168px;
   background: #c4c4c4;
-  border-radius: 9px;
-  margin: 8px 0px;
+  border-radius: 8px;
   display: flex;
+  margin: 0% 0 4% 0;
   padding: 24px 12px;
   align-items: flex-start;
-  justify-content: flex-end;
+  justify-content: space-between;
 `;
