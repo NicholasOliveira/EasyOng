@@ -34,7 +34,9 @@ jobs:
           
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
-        run: yarn --frozen-lockfile
+        run: 
+          yarn --frozen-lockfile
+          yarn  add eslint
         
       - name: Run Lint
         run: yarn run lint
