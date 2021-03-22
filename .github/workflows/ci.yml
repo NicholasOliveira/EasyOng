@@ -33,7 +33,7 @@ jobs:
             ${{ runner.os }}-yarn-
           
       - name: Install dependencies
-        if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
+        #if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
         run: 
           yarn install
           yarn add eslint --dev
