@@ -36,8 +36,8 @@ jobs:
         #if: steps.yarn-cache.outputs.cache-hit != 'true' # Over here!
         run: 
           yarn install
-          yarn add eslint --dev
-          yarn add eslint-ci
+          # yarn add eslint --dev
+          # yarn add eslint-ci
         
       - name: Run Lint
         run: yarn run lint
