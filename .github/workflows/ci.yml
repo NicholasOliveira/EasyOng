@@ -37,6 +37,7 @@ jobs:
         run: 
           yarn install
           yarn add eslint --dev
+          yarn add eslint-ci
         
       - name: Run Lint
         run: yarn run lint
