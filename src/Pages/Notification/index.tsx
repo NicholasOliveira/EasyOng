@@ -10,10 +10,7 @@ import {
 } from './styles';
 import {Ongs} from '../../data/ongs';
 
-export const NotificationScreen = ({navigation}: any) => {
-  const navigateDetails = (id: number) => {
-    navigation.navigate('Details', {itemId: id});
-  };
+export const NotificationScreen = () => {
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
