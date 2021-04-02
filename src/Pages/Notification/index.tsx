@@ -1,77 +1,104 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet, ScrollView, Image, View} from 'react-native';
+import {Layout, Divider, TopNavigation, Text} from '@ui-kitten/components';
 import {
-  Icon,
-  Layout,
-  TopNavigation,
-  TopNavigationAction,
-  Text,
-} from '@ui-kitten/components';
-import {
-  ImgView,
-  TextView,
   Container,
-  OngCard,
+  CardItem,
+  ListCardItem,
   ItemTitle,
   ItemDescription,
-  ListItemBox,
 } from './styles';
 import {Ongs} from '../../data/ongs';
-const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
-export const NotificationScreen = ({route, navigation}: any) => {
-  const {itemId} = route.params;
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-
-  const ArrowIcon = (props: any) => (
-    <Icon fill="#ffffff" name="chevron-right" {...props} />
-  );
-
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-
+export const NotificationScreen = () => {
   return (
-    <SafeAreaView>
-      <TopNavigation
-        title="Notificações"
-        alignment="center"
-        accessoryLeft={BackAction}
-      />
-      <ScrollView style={styles.scrollView}>
-        <Layout style={styles.Layout}>
-          <ImgView />
-          <Container>
-            <TextView>{Ongs[itemId].title}</TextView>
-          </Container>
-          <OngCard>
-            <ItemTitle>Descrição</ItemTitle>
-            <ItemDescription>{Ongs[itemId].descriptionLong}</ItemDescription>
-            <ListItemBox
-              title={() => <Text>Transparência</Text>}
-              accessoryRight={ArrowIcon}
-            />
-            <ListItemBox
-              title={() => <Text>Informações de Contato</Text>}
-              accessoryRight={ArrowIcon}
-            />
-          </OngCard>
+    <>
+      <SafeAreaView style={styles.safeArea}>
+        <TopNavigation
+          alignment="center"
+          title={() => (
+            <Text style={styles.titleTopNavigation}>Notificações</Text>
+          )}
+        />
+        <Divider />
+        <Layout style={styles.layoutGlobal}>
+          <ScrollView style={styles.scrollView}>
+            <Container>
+              <ListCardItem>
+                {Ongs.map((Ong) => (
+                  <CardItem disabled={true}>
+                    <View style={styles.layoutImage}>
+                      <Image
+                        style={styles.image}
+                        source={{
+                          uri:
+                            'https://i1.wp.com/montanha.es.gov.br/site/wp-content/uploads/2021/01/E-Sustentavel.png?fit=800%2C450&ssl=1',
+                        }}
+                      />
+                    </View>
+                    <View style={styles.layoutContent}>
+                      <ItemTitle>{Ong.title}</ItemTitle>
+                      <ItemDescription>{Ong.descriptionShort}</ItemDescription>
+                    </View>
+                  </CardItem>
+                ))}
+              </ListCardItem>
+            </Container>
+          </ScrollView>
         </Layout>
-      </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    width: '100%',
+  listBox: {
     backgroundColor: 'transparent',
   },
-  Layout: {
-    marginBottom: 100,
-    display: 'flex',
-    flexDirection: 'column',
+  titleTopNavigation: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  ongList: {
+    marginVertical: 8,
+    paddingHorizontal: 0,
+    backgroundColor: 'transparent',
+  },
+  safeArea: {
+    flex: 1,
+  },
+  layoutGlobal: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  layoutImage: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+  },
+  layoutContent: {
+    flex: 2,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'transparent',
+  },
+  scrollView: {
+    width: '100%',
+    padding: 10,
+    backgroundColor: 'transparent',
+  },
+  image: {
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+    overflow: 'hidden',
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
   },
 });
