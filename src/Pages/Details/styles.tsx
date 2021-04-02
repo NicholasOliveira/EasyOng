@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Button, Input, Text, Card, ListItem} from '@ui-kitten/components';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 
 export const Container = styled.View`
   padding: 15px;
@@ -45,7 +45,7 @@ export const ShareButton = styled(Button)`
   right: 48px;
 `;
 
-export const ImgView = styled.View`
+export const ImgView = styled(Image)`
   width: 100%;
   height: 250px;
   background-color: #c4c4c4;
@@ -100,6 +100,14 @@ export const ViewFlex = styled(View)`
   align-items: flex-start;
   height: 80px;
   margin-bottom: -20px;
+`;
+
+export const Wrapper = styled.View`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;
 
 export const TextView = styled(Text)`

@@ -1,9 +1,8 @@
 import {useState} from 'react';
-import {Ongs as OngsData, Favorites as FavoritesData} from './ongs';
+import {Favorites as FavoritesData} from './ongs';
 
-const DataOngs = () => {
-  const [Ongs, setOngs] = useState(OngsData);
-  return {Ongs, setOngs};
+const DataOngs = async () => {
+  //return {Ongs, setOngs};
 };
 
 const DataFavorites = () => {

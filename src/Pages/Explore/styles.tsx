@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Button, Input, Text} from '@ui-kitten/components';
-import {View} from 'react-native';
+import {View, Image} from 'react-native';
 
 export const Container = styled.View`
   padding: 16px;
@@ -62,14 +62,14 @@ export const OngCardItem = styled.TouchableOpacity`
   width: 256px;
   margin: 16px 16px;
   margin-left: 0px;
-  height: 160px;
+  min-height: 220px;
   display: flex;
   align-items: flex-start;
-  justify-content: flex-end;
-  background-color: #c4c4c4;
+  justify-content: flex-start;
+  background-color: transparent;
   border-radius: 8px;
   color: #ffffff;
-  padding: 24px 12px;
+  padding: 0px;
   font-size: 13px;
   font-weight: 700;
 `;
@@ -94,14 +94,25 @@ export const ListCardItem = styled(View)`
   flex-wrap: wrap;
 `;
 
-export const CardItem = styled.TouchableOpacity`
-  width: 48%;
-  height: 168px;
+export const ImageUI = styled.Image`
+  width: 100%;
+  height: 128px;
   background: #c4c4c4;
   border-radius: 8px;
   display: flex;
   margin: 0% 0 4% 0;
-  padding: 24px 12px;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
+export const CardItem = styled.TouchableOpacity`
+  width: 48%;
+  min-height: 168px;
+  background: transparent;
+  border-radius: 8px;
+  display: flex;
+  margin: 0% 0 6% 0;
+  padding: 0px;
   align-items: flex-start;
   justify-content: space-between;
 `;

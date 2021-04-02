@@ -18,6 +18,7 @@ import {
   ItemDescription,
   FavoriteButton,
   Container,
+  ImageUI,
 } from './styles';
 import {OngsContext, FavoritesContext, UsersContext} from '../../Contexts';
 
@@ -92,16 +93,15 @@ export const FavoriteScreen = ({navigation}: any) => {
               <TouchableOpacity
                 onPress={() => navigateDetails(favorite)}
                 key={index}>
+                <ImageUI source={{uri: Ongs?.pictures[0]?.url}} />
                 <FavoriteItem>
                   <FavoriteButton
                     onPress={() => handleRemoveFavorite(favorite)}
                     accessoryLeft={(props) => RemoveIcon({...props})}
                   />
                 </FavoriteItem>
-                <ItemTitle>{Ongs[favorite].title}</ItemTitle>
-                <ItemDescription>
-                  {Ongs[favorite].descriptionShort}
-                </ItemDescription>
+                <ItemTitle>{Ongs[favorite].name}</ItemTitle>
+                <ItemDescription>{Ongs[favorite].description}</ItemDescription>
               </TouchableOpacity>
             ))}
         </Container>

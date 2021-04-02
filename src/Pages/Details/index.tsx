@@ -1,11 +1,13 @@
-import React, {useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import api from '../../services/api';
 import {
   Icon,
   Layout,
   TopNavigation,
   TopNavigationAction,
   Text,
+  Spinner as Loading,
 } from '@ui-kitten/components';
 import {
   ImgView,
@@ -17,20 +19,37 @@ import {
   ListItemBox,
   FavoriteButton,
   ShareButton,
+  Wrapper,
 } from './styles';
-import {OngsContext, FavoritesContext, UsersContext} from '../../Contexts';
+import {FavoritesContext, UsersContext} from '../../Contexts';
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
-export const DetailsScreen = ({route, navigation}: any) => {
+function DetailsScreen({route, navigation}: any) {
   const {itemId} = route.params;
+  const {Favorites, setFavorites}: any = useContext(FavoritesContext);
+  const {User}: any = useContext(UsersContext);
+  const [Ongloading, setOngLoad] = useState(true);
+  const [Ong, setOng] = useState({});
+
+  useEffect(() => {
+    function getOng() {
+      setOngLoad(true);
+      api
+        .get(`ngos/${itemId}`)
+        .then((data: any) => {
+          setOng(data?.data);
+          setOngLoad(false);
+        })
+        .catch(() => {
+          setOngLoad(false);
+        });
+    }
+    getOng();
+  }, [itemId]);
+
   const navigateBack = () => {
     navigation.goBack();
   };
-
-  const {Ongs}: any = useContext(OngsContext);
-
-  const {Favorites, setFavorites}: any = useContext(FavoritesContext);
-  const {User}: any = useContext(UsersContext);
 
   const active = Favorites['u' + User.id]?.includes(itemId);
 
@@ -63,42 +82,50 @@ export const DetailsScreen = ({route, navigation}: any) => {
     <Icon {...props} size="30" name="share" fill={'rgba(0, 0, 0, 0.54)'} />
   );
   return (
-    <SafeAreaView>
-      <TopNavigation
-        title="Detalhe"
-        alignment="center"
-        accessoryLeft={BackAction}
-      />
-      <ScrollView style={styles.scrollView}>
-        <Layout style={styles.Layout}>
-          <ImgView />
-          <Container>
-            <TextView>{Ongs[itemId].title}</TextView>
-          </Container>
-          <OngCard>
-            <FavoriteButton
-              onPress={() => !active && handleFavorite(itemId)}
-              accessoryLeft={(props) => FavoriteIcon({...props, active})}
-            />
-            <ShareButton
-              accessoryLeft={(props) => ShareIcon({...props, active: true})}
-            />
-            <ItemTitle>Descrição</ItemTitle>
-            <ItemDescription>{Ongs[itemId].descriptionLong}</ItemDescription>
-            <ListItemBox
-              title={() => <Text>Transparência</Text>}
-              accessoryRight={ArrowIcon}
-            />
-            <ListItemBox
-              title={() => <Text>Informações de Contato</Text>}
-              accessoryRight={ArrowIcon}
-            />
-          </OngCard>
-        </Layout>
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      {Ongloading ? (
+        <Wrapper>
+          <Loading />
+        </Wrapper>
+      ) : (
+        <SafeAreaView>
+          <TopNavigation
+            title="Detalhes"
+            alignment="center"
+            accessoryLeft={BackAction}
+          />
+          <ScrollView style={styles.scrollView}>
+            <Layout style={styles.Layout}>
+              <ImgView source={{uri: Ong?.pictures[0]?.url}} />
+              <Container>
+                <TextView>{Ong?.name}</TextView>
+              </Container>
+              <OngCard>
+                <FavoriteButton
+                  onPress={() => !active && handleFavorite(itemId)}
+                  accessoryLeft={(props) => FavoriteIcon({...props, active})}
+                />
+                <ShareButton
+                  accessoryLeft={(props) => ShareIcon({...props, active: true})}
+                />
+                <ItemTitle>Descrição</ItemTitle>
+                <ItemDescription>{Ong?.description}</ItemDescription>
+                <ListItemBox
+                  title={() => <Text>Transparência</Text>}
+                  accessoryRight={ArrowIcon}
+                />
+                <ListItemBox
+                  title={() => <Text>Informações de Contato</Text>}
+                  accessoryRight={ArrowIcon}
+                />
+              </OngCard>
+            </Layout>
+          </ScrollView>
+        </SafeAreaView>
+      )}
+    </>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -111,3 +138,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
 });
+
+export {DetailsScreen};

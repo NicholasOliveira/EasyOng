@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView} from 'react-native';
 import {
   Layout,
@@ -19,11 +19,13 @@ import {
   ListCardItem,
   ItemTitle,
   ItemDescription,
+  ImageUI,
 } from './styles';
 import SearchBar from '../../components/SearchBar';
-import {Ongs} from '../../data/ongs';
+import {OngsContext} from '../../Contexts/index';
 
 export const ExploreScreen = ({navigation}: any) => {
+  const {Ongs}: any = useContext(OngsContext);
   const navigateDetails = (id: number) => {
     navigation.navigate('Details', {itemId: id});
   };
@@ -37,12 +39,13 @@ export const ExploreScreen = ({navigation}: any) => {
 
   const renderHorizontalOngItem = (info: any) => (
     <OngCardItem onPress={() => navigateDetails(info.item.id)}>
-      <ItemTitle>{info.item.title}</ItemTitle>
-      <ItemDescription>{info.item.descriptionShort}</ItemDescription>
+      <ImageUI source={{uri: info?.item?.pictures[0]?.url}} />
+      <ItemTitle>{info.item.name}</ItemTitle>
+      <ItemDescription>{info.item.description.substr(0, 55)}</ItemDescription>
     </OngCardItem>
   );
 
-  const displayOngs = Ongs.filter((Ong) => Ong.level === 'Easy');
+  const displayOngs = Ongs;
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
@@ -83,12 +86,15 @@ export const ExploreScreen = ({navigation}: any) => {
                 <TextView>Veja mais</TextView>
               </ViewFlex>
               <ListCardItem>
-                {Ongs.map((Ong) => (
+                {[...Ongs].sort().map((Ong: any) => (
                   <CardItem
                     onPress={() => navigateDetails(Ong.id)}
                     key={Ong.id}>
-                    <ItemTitle>{Ong.title}</ItemTitle>
-                    <ItemDescription>{Ong.descriptionShort}</ItemDescription>
+                    <ImageUI source={{uri: Ong?.pictures[0]?.url}} />
+                    <ItemTitle>{Ong.name}</ItemTitle>
+                    <ItemDescription>
+                      {Ong.description.substr(0, 55)}
+                    </ItemDescription>
                   </CardItem>
                 ))}
               </ListCardItem>

@@ -71,6 +71,17 @@ export const ListCardItem = styled(View)`
   flex-wrap: wrap;
 `;
 
+export const ImageUI = styled.Image`
+  width: 100%;
+  height: 128px;
+  background: #c4c4c4;
+  border-radius: 8px;
+  display: flex;
+  margin: 0% 0 4% 0;
+  align-items: flex-start;
+  justify-content: space-between;
+`;
+
 export const CardItem = styled(Card)`
   width: 163px;
   height: 168px;
