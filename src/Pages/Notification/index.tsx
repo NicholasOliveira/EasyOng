@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {SafeAreaView, StyleSheet, ScrollView, Image, View} from 'react-native';
 import {Layout, Divider, TopNavigation, Text} from '@ui-kitten/components';
 import {
@@ -8,9 +8,10 @@ import {
   ItemTitle,
   ItemDescription,
 } from './styles';
-import {Ongs} from '../../data/ongs';
+import {OngsContext} from '../../Contexts/index';
 
 export const NotificationScreen = () => {
+  const {Ongs}: any = useContext(OngsContext);
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
@@ -25,7 +26,7 @@ export const NotificationScreen = () => {
           <ScrollView style={styles.scrollView}>
             <Container>
               <ListCardItem>
-                {Ongs.map((Ong) => (
+                {Ongs?.map((Ong: any) => (
                   <CardItem key={Ong.id} disabled={true}>
                     <View style={styles.layoutImage}>
                       <Image
@@ -37,8 +38,10 @@ export const NotificationScreen = () => {
                       />
                     </View>
                     <View style={styles.layoutContent}>
-                      <ItemTitle>{Ong.title}</ItemTitle>
-                      <ItemDescription>{Ong.descriptionShort}</ItemDescription>
+                      <ItemTitle>{Ong.name}</ItemTitle>
+                      <ItemDescription>
+                        {Ong.description.substr(0, 50)}
+                      </ItemDescription>
                     </View>
                   </CardItem>
                 ))}

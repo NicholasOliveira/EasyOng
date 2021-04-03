@@ -29,10 +29,10 @@ export const ItemTitle = styled(Text)`
   font-weight: 700;
   margin-bottom: 5px;
   color: #000000;
-  paddingtop: 8px;
-  paddingleft: 8px;
-  paddingright: 8px;
-  paddingbottom: 2px;
+  padding-top: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 2px;
 `;
 
 export const ItemDescription = styled(Text)`
@@ -40,7 +40,7 @@ export const ItemDescription = styled(Text)`
   line-height: 16px;
   font-weight: 400;
   color: #000000;
-  paddingleft: 8px;
-  paddingright: 8px;
-  paddingbottom: 8px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
 `;
