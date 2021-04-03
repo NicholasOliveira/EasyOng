@@ -47,12 +47,11 @@ export const FavoriteScreen = ({navigation}: any) => {
       height: '100%',
       backgroundColor: theme['color-basic-800'],
     },
-    Layout: {
+    layout: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'column',
-      height: '100%',
       backgroundColor: theme['color-basic-800'],
     },
   });
@@ -62,7 +61,7 @@ export const FavoriteScreen = ({navigation}: any) => {
       <SafeAreaView>
         <TopNavigation title="Favoritos" alignment="center" />
       </SafeAreaView>
-      <Layout style={styles.Layout}>
+      <Layout style={styles.layout}>
         <Container>
           {Favorites[User.id] &&
             Favorites[User.id]?.map((favorite: any, index: any) => (
