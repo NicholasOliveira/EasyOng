@@ -1,5 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet} from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import api from '../../services/api';
 import {
   Icon,
@@ -12,7 +13,6 @@ import {
 import {
   ImgView,
   TextView,
-  Container,
   OngCard,
   ItemTitle,
   ItemDescription,
@@ -99,11 +99,15 @@ function DetailsScreen({route, navigation}: any) {
             accessoryLeft={BackAction}
           />
           <ScrollView style={styles.scrollView}>
-            <Layout style={styles.Layout}>
-              <ImgView source={{uri: Ong?.pictures[0]?.url}} />
-              <Container>
-                <TextView>{Ong?.name}</TextView>
-              </Container>
+            <Layout style={styles.layout}>
+              <View style={styles.container}>
+                <ImgView source={{uri: Ong?.pictures[0]?.url}} />
+                <LinearGradient
+                  colors={['white', 'gray']}
+                  style={styles.linearGradient}>
+                  <TextView>{Ong?.name}</TextView>
+                </LinearGradient>
+              </View>
               <OngCard>
                 <FavoriteButton
                   onPress={() => !active && handleFavorite(Ong)}
@@ -136,10 +140,20 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: 'transparent',
   },
-  Layout: {
+  layout: {
     marginBottom: 100,
     display: 'flex',
     flexDirection: 'column',
+  },
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  linearGradient: {
+    justifyContent: 'center',
+    height: 140,
+    width: '100%',
   },
 });
 

@@ -2,10 +2,6 @@ import styled from 'styled-components/native';
 import {Button, Input, Text, Card, ListItem} from '@ui-kitten/components';
 import {View, Image} from 'react-native';
 
-export const Container = styled.View`
-  padding: 15px;
-`;
-
 export const FavoriteItem = styled.View`
   width: 100%;
   height: 145px;
@@ -111,11 +107,12 @@ export const Wrapper = styled.View`
 `;
 
 export const TextView = styled(Text)`
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 200;
   font-family: sans-serif;
-  margin-top: -90px;
   text-align: left;
+  margin-left: 16px;
+  margin-bottom: 32px;
 `;
 
 export const OngCard = styled(View)`
