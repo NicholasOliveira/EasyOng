@@ -53,7 +53,7 @@ function DetailsScreen({route, navigation}: any) {
   };
 
   let active = false;
-  for (let i = 0; i < Favorites[User.id].length; i++) {
+  for (let i = 0; i < Favorites[User.id]?.length; i++) {
     Favorites[User.id][i]?.id === itemId ? (active = true) : (active = false);
   }
 
