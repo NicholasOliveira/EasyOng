@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {Button, Input, Text} from '@ui-kitten/components';
-import {View, Image} from 'react-native';
+import {View} from 'react-native';
 
 export const Container = styled.View`
   padding: 16px;

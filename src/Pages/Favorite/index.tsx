@@ -20,19 +20,14 @@ import {
   Container,
   ImageUI,
 } from './styles';
-import {OngsContext, FavoritesContext, UsersContext} from '../../Contexts';
+import {FavoritesContext, UsersContext} from '../../Contexts';
 
 export const FavoriteScreen = ({navigation}: any) => {
   const theme = useTheme();
-  const {Ongs}: any = useContext(OngsContext);
 
   const {Favorites, setFavorites}: any = useContext(FavoritesContext);
 
   const {User}: any = useContext(UsersContext);
-
-  /*   useEffect(() => {
-    setFavorites({});
-  }, [setFavorites]); */
 
   const navigateDetails = (id: number) => {
     navigation.navigate('Details', {itemId: id});
@@ -45,15 +40,15 @@ export const FavoriteScreen = ({navigation}: any) => {
   const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
   const RemoveIcon = (props: any) => (
-    <Icon {...props} name="trash" fill={'#202020'} />
+    <Icon {...props} name="heart" fill={'#fff'} />
   );
 
   const handleRemoveFavorite = (idOng: any) => {
-    const fav = Favorites['u' + User.id].filter(
+    const fav = Favorites[User.id].filter(
       (favorite: any) => favorite !== idOng,
     );
     setFavorites({
-      ['u' + User.id]: [...fav],
+      [User.id]: [...fav],
     });
   };
 
@@ -88,20 +83,20 @@ export const FavoriteScreen = ({navigation}: any) => {
       </SafeAreaView>
       <Layout style={styles.Layout}>
         <Container>
-          {Favorites['u' + User.id] &&
-            Favorites['u' + User.id]?.map((favorite: any, index: any) => (
+          {Favorites[User.id] &&
+            Favorites[User.id]?.map((favorite: any, index: any) => (
               <TouchableOpacity
-                onPress={() => navigateDetails(favorite)}
+                onPress={() => navigateDetails(favorite?.id)}
                 key={index}>
-                <ImageUI source={{uri: Ongs?.pictures[0]?.url}} />
                 <FavoriteItem>
+                  <ImageUI source={{uri: favorite?.pictures[0]?.url}} />
                   <FavoriteButton
                     onPress={() => handleRemoveFavorite(favorite)}
                     accessoryLeft={(props) => RemoveIcon({...props})}
                   />
                 </FavoriteItem>
-                <ItemTitle>{Ongs[favorite].name}</ItemTitle>
-                <ItemDescription>{Ongs[favorite].description}</ItemDescription>
+                <ItemTitle>{favorite.name}</ItemTitle>
+                <ItemDescription>{favorite.description}</ItemDescription>
               </TouchableOpacity>
             ))}
         </Container>

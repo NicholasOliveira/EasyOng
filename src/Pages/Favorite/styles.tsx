@@ -9,21 +9,21 @@ export const Container = styled.View`
 
 export const FavoriteItem = styled.View`
   width: 100%;
-  height: 200px;
-  background-color: #c4c4c4;
+  min-height: 170px;
+  background-color: transparent;
   border-radius: 8px;
   position: relative;
 `;
 
 export const FavoriteButton = styled(Button)`
-  background: #ffffff;
+  background: #f04;
   display: flex;
   border: 0;
   justify-content: center;
   align-items: center;
   width: 45px;
   height: 45px;
-  color: #f04;
+  color: #fff;
   border-radius: 45px;
   text-align: center;
   position: absolute;
@@ -73,8 +73,8 @@ export const ListCardItem = styled(View)`
 
 export const ImageUI = styled.Image`
   width: 100%;
-  height: 128px;
-  background: #c4c4c4;
+  min-height: 160px;
+  background: transparent;
   border-radius: 8px;
   display: flex;
   margin: 0% 0 4% 0;
@@ -84,8 +84,8 @@ export const ImageUI = styled.Image`
 
 export const CardItem = styled(Card)`
   width: 163px;
-  height: 168px;
-  background: #c4c4c4;
+  min-height: 170px;
+  background: transparent;
   border-radius: 9px;
   margin: 8px 0px;
   display: flex;

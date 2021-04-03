@@ -19,19 +19,20 @@ import {
   ListItemBox,
   FavoriteButton,
   ShareButton,
-  Wrapper,
 } from './styles';
 import {FavoritesContext, UsersContext} from '../../Contexts';
+import Wrapper from '../../components/Wrapper';
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
 function DetailsScreen({route, navigation}: any) {
   const {itemId} = route.params;
   const {Favorites, setFavorites}: any = useContext(FavoritesContext);
   const {User}: any = useContext(UsersContext);
-  const [Ongloading, setOngLoad] = useState(true);
-  const [Ong, setOng] = useState({});
+  const [Ongloading, setOngLoad] = useState<any>(true);
+  const [Ong, setOng] = useState<any>({});
 
   useEffect(() => {
+    //setFavorites(undefined);
     function getOng() {
       setOngLoad(true);
       api
@@ -51,13 +52,16 @@ function DetailsScreen({route, navigation}: any) {
     navigation.goBack();
   };
 
-  const active = Favorites['u' + User.id]?.includes(itemId);
+  let active = false;
+  for (let i = 0; i < Favorites[User.id].length; i++) {
+    Favorites[User.id][i]?.id === itemId ? (active = true) : (active = false);
+  }
 
-  const handleFavorite = (idOng: any) => {
+  const handleFavorite = (OngItem: any) => {
     setFavorites({
-      ['u' + User.id]: Favorites['u' + User.id]
-        ? [...Favorites['u' + User.id], idOng]
-        : [idOng],
+      [User.id]: Favorites[User.id]
+        ? [...Favorites[User.id], OngItem]
+        : [OngItem],
     });
   };
 
@@ -102,7 +106,7 @@ function DetailsScreen({route, navigation}: any) {
               </Container>
               <OngCard>
                 <FavoriteButton
-                  onPress={() => !active && handleFavorite(itemId)}
+                  onPress={() => !active && handleFavorite(Ong)}
                   accessoryLeft={(props) => FavoriteIcon({...props, active})}
                 />
                 <ShareButton

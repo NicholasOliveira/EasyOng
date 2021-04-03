@@ -26,7 +26,7 @@ export const NotificationScreen = () => {
             <Container>
               <ListCardItem>
                 {Ongs.map((Ong) => (
-                  <CardItem disabled={true}>
+                  <CardItem key={Ong.id} disabled={true}>
                     <View style={styles.layoutImage}>
                       <Image
                         style={styles.image}
