@@ -11,7 +11,7 @@ export const InputField = styled(Input)`
   margin: 0;
   width: 85%;
   background-color: transparent;
-  margin-top: 3px;
+  margin-top: 4px;
   border: none;
 `;
 
@@ -39,7 +39,7 @@ export const BoxButton = styled(Button)`
   border: 1px solid #bababa;
   border-radius: 8px;
   text-align: center;
-  margin-left: 15px;
+  margin-left: 16px;
 `;
 
 export const ViewFlex = styled(View)`
@@ -47,14 +47,14 @@ export const ViewFlex = styled(View)`
   justify-content: center;
   align-items: flex-start;
   height: 80px;
-  margin-bottom: -20px;
+  background-color: transparent;
 `;
 
 export const TextView = styled(Text)`
-  font-size: 23px;
+  font-size: 24px;
   font-weight: 200;
   font-family: sans-serif;
-  margin-top: 15px;
+  margin-top: 16px;
   text-align: left;
 `;
 
@@ -66,12 +66,12 @@ export const OngCardItem = styled.TouchableOpacity`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  background-color: transparent;
   border-radius: 8px;
   color: #ffffff;
   padding: 0px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
+  background-color: transparent;
 `;
 
 export const ItemTitle = styled(Text)`
@@ -89,7 +89,7 @@ export const ItemDescription = styled(Text)`
 export const ListCardItem = styled(View)`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-bottom: 16px;
   width: 100%;
   flex-wrap: wrap;
 `;
@@ -108,7 +108,6 @@ export const ImageUI = styled.Image`
 export const CardItem = styled.TouchableOpacity`
   width: 48%;
   min-height: 168px;
-  background: transparent;
   border-radius: 8px;
   display: flex;
   margin: 0% 0 6% 0;
