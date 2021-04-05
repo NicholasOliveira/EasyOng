@@ -73,10 +73,9 @@ export const ExploreScreen = ({navigation}: any) => {
               <ViewFlex>
                 <TextView>Sugestões para você</TextView>
               </ViewFlex>
-
               <List
-                style={styles.listBox}
-                contentContainerStyle={styles.ongList}
+                style={styles.horizontalOngList}
+                contentContainerStyle={styles.contentContainerHorizontalOngList}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
                 data={displayOngs}
@@ -107,18 +106,6 @@ export const ExploreScreen = ({navigation}: any) => {
 };
 
 const styles = StyleSheet.create({
-  listBox: {
-    backgroundColor: 'transparent',
-  },
-  titleTopNavigation: {
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  ongList: {
-    marginVertical: 8,
-    paddingHorizontal: 0,
-    backgroundColor: 'transparent',
-  },
   safeArea: {
     flex: 1,
   },
@@ -129,7 +116,18 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     width: '100%',
-    padding: 10,
+    padding: 8,
     backgroundColor: 'transparent',
+  },
+  titleTopNavigation: {
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  horizontalOngList: {
+    backgroundColor: 'transparent',
+  },
+  contentContainerHorizontalOngList: {
+    marginTop: -16,
+    marginBottom: -16,
   },
 });
