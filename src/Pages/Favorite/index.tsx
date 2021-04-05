@@ -5,12 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import {
-  Icon,
-  Layout,
-  TopNavigation,
-  TopNavigationAction,
-} from '@ui-kitten/components';
+import {Icon, Layout, TopNavigation} from '@ui-kitten/components';
 import {useTheme} from '@ui-kitten/components';
 import {
   FavoriteItem,
@@ -33,12 +28,6 @@ export const FavoriteScreen = ({navigation}: any) => {
     navigation.navigate('Details', {itemId: id});
   };
 
-  const navigateBack = () => {
-    navigation.goBack();
-  };
-
-  const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
-
   const RemoveIcon = (props: any) => (
     <Icon {...props} name="heart" fill={'#fff'} />
   );
@@ -52,22 +41,17 @@ export const FavoriteScreen = ({navigation}: any) => {
     });
   };
 
-  const BackAction = () => (
-    <TopNavigationAction icon={BackIcon} onPress={navigateBack} />
-  );
-
   const styles = StyleSheet.create({
     scrollView: {
       width: '100%',
       height: '100%',
       backgroundColor: theme['color-basic-800'],
     },
-    Layout: {
+    layout: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       flexDirection: 'column',
-      height: '100%',
       backgroundColor: theme['color-basic-800'],
     },
   });
@@ -75,13 +59,9 @@ export const FavoriteScreen = ({navigation}: any) => {
   return (
     <ScrollView style={styles.scrollView}>
       <SafeAreaView>
-        <TopNavigation
-          title="Favoritos"
-          alignment="center"
-          accessoryLeft={BackAction}
-        />
+        <TopNavigation title="Favoritos" alignment="center" />
       </SafeAreaView>
-      <Layout style={styles.Layout}>
+      <Layout style={styles.layout}>
         <Container>
           {Favorites[User.id] &&
             Favorites[User.id]?.map((favorite: any, index: any) => (
