@@ -45,7 +45,6 @@ export default () => {
             }}>
             <FavoritesContext.Provider value={{Favorites, setFavorites}}>
               <IconRegistry icons={EvaIconsPack} />
-
               <ApplicationProvider {...eva} theme={eva.dark}>
                 {Ongsloading ? (
                   <Wrapper>
