@@ -85,6 +85,7 @@ function DetailsScreen({route, navigation}: any) {
   const ShareIcon = (props: any) => (
     <Icon {...props} size="30" name="share" fill={'rgba(0, 0, 0, 0.54)'} />
   );
+
   return (
     <>
       {Ongloading ? (
@@ -103,9 +104,9 @@ function DetailsScreen({route, navigation}: any) {
               <View style={styles.container}>
                 <ImgView source={{uri: Ong?.pictures[0]?.url}} />
                 <LinearGradient
-                  colors={['white', 'gray']}
+                  colors={['transparent', 'black']}
                   style={styles.linearGradient}>
-                  <TextView>{Ong?.name}</TextView>
+                  <TextView style={styles.text}>{Ong?.name}</TextView>
                 </LinearGradient>
               </View>
               <OngCard>
@@ -113,14 +114,15 @@ function DetailsScreen({route, navigation}: any) {
                   onPress={() => !active && handleFavorite(Ong)}
                   accessoryLeft={(props) => FavoriteIcon({...props, active})}
                 />
-                <ShareButton
+                {/* <ShareButton
                   accessoryLeft={(props) => ShareIcon({...props, active: true})}
-                />
+                /> */}
                 <ItemTitle>Descrição</ItemTitle>
                 <ItemDescription>{Ong?.description}</ItemDescription>
                 <ListItemBox
                   title={() => <Text>Transparência</Text>}
                   accessoryRight={ArrowIcon}
+                  // onPress={() => navigation.navigate('Profile', {name: 'Jane'})}
                 />
                 <ListItemBox
                   title={() => <Text>Informações de Contato</Text>}
@@ -152,8 +154,15 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     justifyContent: 'center',
-    height: 140,
     width: '100%',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    height: '100%',
+  },
+  text: {
+    top: '20%',
   },
 });
 

@@ -20,9 +20,9 @@ export const BottomNavigationTabs = ({navigation}: any) => {
       }}>
       <BottomNavigationTab title="Explore" icon={HomeIcon} />
       <BottomNavigationTab title="Favoritos" icon={FavoriteIcon} />
-      <BottomNavigationTab title="" icon={AddIcon} />
-      <BottomNavigationTab title="Notificações" icon={BellIcon} />
-      <BottomNavigationTab title="Perfil" icon={ProfileIcon} />
+      {/* <BottomNavigationTab title="" icon={AddIcon} /> */}
+      {/* <BottomNavigationTab title="Notificações" icon={BellIcon} /> */}
+      {/* <BottomNavigationTab title="Perfil" icon={ProfileIcon} /> */}
     </BottomNavigation>
   );
 };

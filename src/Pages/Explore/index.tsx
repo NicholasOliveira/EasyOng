@@ -56,9 +56,9 @@ export const ExploreScreen = ({navigation}: any) => {
         <Divider />
         <Layout style={styles.layoutGlobal}>
           <ScrollView style={styles.scrollView}>
-            <SearchBar />
+            {/* <SearchBar /> */}
             <Container>
-              <Box>
+              {/* <Box>
                 <BoxButton
                   onPress={navigateDetails}
                   accessoryRight={FilterIcon}>
@@ -69,7 +69,7 @@ export const ExploreScreen = ({navigation}: any) => {
                   accessoryRight={ChevronDown}>
                   Ordenar
                 </BoxButton>
-              </Box>
+              </Box> */}
               <ViewFlex>
                 <TextView>Sugestões para você</TextView>
               </ViewFlex>
