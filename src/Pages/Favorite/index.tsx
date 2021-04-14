@@ -78,10 +78,10 @@ export const FavoriteScreen = ({navigation}: any) => {
           {Favorites[User.id] &&
             Favorites[User.id]?.map((favorite: any, index: any) => (
               <TouchableOpacity
-                onPress={() => navigateDetails(favorite?.id)}
+                onPress={() => navigateDetails(favorite?.id, index)}
                 key={index}>
                 <FavoriteItem>
-                  <ImageUI source={{uri: pictures[favorite?.id]}} />
+                  <ImageUI source={{uri: pictures[index]}} />
                   <FavoriteButton
                     onPress={() => handleRemoveFavorite(favorite)}
                     accessoryLeft={(props) => RemoveIcon({...props})}
