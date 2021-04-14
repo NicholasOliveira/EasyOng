@@ -39,7 +39,7 @@ export const ExploreScreen = ({navigation}: any) => {
 
   const {Ongs}: any = useContext(OngsContext);
   const navigateDetails = (id: number, index: any) => {
-    navigation.navigate('Details', {itemId: id, index});
+    navigation.navigate('Details', {itemId: id, indice: index});
   };
   const FilterIcon = (props: any) => (
     <Icon fill="#ffffff" name="options-2" {...props} />
