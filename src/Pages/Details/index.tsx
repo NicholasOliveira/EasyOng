@@ -25,7 +25,7 @@ import Wrapper from '../../components/Wrapper';
 const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
 function DetailsScreen({route, navigation}: any) {
-  const {itemId, index} = route.params;
+  const {itemId, indice} = route.params;
   const {Favorites, setFavorites}: any = useContext(FavoritesContext);
   const {User}: any = useContext(UsersContext);
   const [Ongloading, setOngLoad] = useState<any>(true);
@@ -114,7 +114,7 @@ function DetailsScreen({route, navigation}: any) {
           <ScrollView style={styles.scrollView}>
             <Layout style={styles.layout}>
               <View style={styles.container}>
-                <ImgView source={{uri: pictures[index]}} />
+                <ImgView source={{uri: pictures[indice]}} />
                 <LinearGradient
                   colors={['transparent', 'black']}
                   style={styles.linearGradient}>
